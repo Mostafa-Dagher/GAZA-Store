@@ -1,0 +1,17 @@
+<!-- brans slied -->
+
+<div class="row">
+    <div class="col-md-12">
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let brand of brands">
+                <ng-template carouselSlide>
+                    <img [src]="brand.image?.secure_url" class="w-100" onerror="this.src='assets/error.svg';"
+                        height="200" alt="..">
+                </ng-template>
+            </ng-container>
+
+        </owl-carousel-o>
+
+    </div>
+</div>
+<!-- ************ -->

@@ -1,0 +1,70 @@
+<div class="w-75 mx-auto py-4">
+    <h4>Register Now :</h4>
+
+    <form (ngSubmit)="handelRegister(registerForm)" [formGroup]="registerForm">
+        <div *ngIf="message" class="alert alert-danger ">
+            <p class="m-0">{{message}}</p>
+        </div>
+
+        <label for="userName">userName</label>
+        <input type="text" class="form-control mb-2" id="userName" formControlName="userName">
+        <div *ngIf="registerForm.get('userName')?.errors && registerForm.get('userName')?.touched"
+            class="alert alert-danger">
+            <p *ngIf="registerForm.get('userName')?.getError('minlength')" class="m-0">userName minLength is 3</p>
+            <p *ngIf="registerForm.get('userName')?.getError('maxlength')" class="m-0">userName maxlegth is 15</p>
+            <p *ngIf="registerForm.get('userName')?.getError('required')" class="m-0">userName is Required</p>
+        </div>
+
+
+        <label for="email">email</label>
+        <input type="email" class="form-control mb-2" id="email" formControlName="email">
+        <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert alert-danger">
+            <p *ngIf="registerForm.get('email')?.getError('email')" class="m-0">email inValid</p>
+            <p *ngIf="registerForm.get('email')?.getError('required')" class="m-0">email is Required</p>
+        </div>
+
+        <div class="position-relative">
+            <label for="password">password</label>
+            <input [type]="changetype? 'password':'text' " class="form-control mb-2" id="password"
+                formControlName="password">
+            <span id="passwordIcon" (click)="viewpass()">
+                <i [ngClass]="visibele?'fa-regular fa-eye':'fa-regular fa-eye-slash' "
+                    class="cursor-pointer text-success  "></i></span>
+        </div>
+        <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
+            class="alert alert-danger">
+            <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0">password must start with uppercase
+                from 5 to 10 </p>
+            <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0">password is Required</p>
+        </div>
+
+        <div class="position-relative">
+            <label for="cPassword">cPassword</label>
+            <input [type]="changetype? 'password':'text' " class="form-control mb-2" id="cPassword"
+                formControlName="cPassword">
+            <span id="passwordIcon" (click)="viewpass()">
+                <i [ngClass]="visibele?'fa-regular fa-eye':'fa-regular fa-eye-slash' "
+                    class="cursor-pointer text-success  "></i></span>
+        </div>
+        <div *ngIf="registerForm.get('cPassword')?.errors && registerForm.get('cPassword')?.touched"
+            class="alert alert-danger">
+            <p *ngIf="registerForm.get('cPassword')?.getError('pattern')" class="m-0">cPassword password must start
+                with uppercase from 5 to 10</p>
+            <p *ngIf="registerForm.get('cPassword')?.getError('required')" class="m-0">cPassword is Required</p>
+        </div>
+
+        <label for="phone">phone</label>
+        <input type="tel" class="form-control mb-2" id="phone" formControlName="phone">
+        <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched" class="alert alert-danger">
+            <p *ngIf="registerForm.get('phone')?.getError('pattern')" class="m-0">Enter a Valid Egyption phone Number
+            </p>
+            <p *ngIf="registerForm.get('phone')?.getError('required')" class="m-0">phone is Required</p>
+        </div>
+
+        <button [disabled]="registerForm.invalid" class="btn bg-main text-white d-block ms-auto my-2" type="submit">
+            <i *ngIf="islooding" class="fas fa-spinner fa-spin"></i>
+            <span *ngIf="!islooding">Register</span>
+        </button>
+
+    </form>
+</div>

@@ -1,0 +1,52 @@
+<div class="mx-auto w-50 my-5">
+
+    <form [formGroup]="shippingAddress" (ngSubmit)="handelSubmit(shippingAddress)">
+        <label for="paymentMethod">paymentMethod :</label>
+        <select class="form-select mb-2" id="paymentMethod" name="paymentMethod" formControlName="paymentMethod" required>
+        
+            <option value="card">Card</option>
+            <option value="cash">Cash</option>
+                   
+        </select>
+
+        <div *ngIf="shippingAddress.get('paymentMethod')?.errors && shippingAddress.get('paymentMethod')?.touched"
+            class="alert alert-danger">
+            <p *ngIf="shippingAddress.get('paymentMethod')?.getError('required')" class="m-0">paymentMethod is Required
+            </p>
+        </div>
+
+
+
+        <label for="phone">Phone :</label>
+        <input type="tel" class="form-control mb-2" formControlName="phone" id="phone"   placeholder="Your Phone">
+
+        <div *ngIf="shippingAddress.get('phone')?.errors && shippingAddress.get('phone')?.touched"
+            class="alert alert-danger">
+            <p *ngIf="shippingAddress.get('phone')?.getError('pattern')" class="m-0">Enter a Valid Egyption phone Number
+            </p>
+            <p *ngIf="shippingAddress.get('phone')?.getError('required')" class="m-0">phone is Required
+            </p>
+        </div>
+
+
+
+
+        <label for="address">Address :</label>
+        <input type="text" class="form-control mb-2" formControlName="address" id="address"   placeholder="Your Address">
+
+        <div *ngIf="shippingAddress.get('Address')?.errors && shippingAddress.get('Address')?.touched"
+            class="alert alert-danger">
+            <p *ngIf="shippingAddress.get('Address')?.getError('required')" class="m-0">Address is Required</p>
+        </div>
+
+
+
+
+        <div class="text-center w-100">
+            <button type="submit" [disabled]="shippingAddress.invalid"
+                class="btn bg-main text-white w-75 text-center ">Pay</button>
+        </div>
+
+    </form>
+
+</div>

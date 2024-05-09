@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+
+    <div class="alert alert-danger w-100 text-center h2 " *ngIf="products && products.length == 0;">Dont Have eny Product</div>
+
+
+        <div *ngFor="let product of products|search:searchterm" class="col-md-3 position-relative">
+            <div class="product rounded px-2 py-4">
+                <button class="btn border-0 harticon" (click)="addToWishlist(product._id)">
+                    <i [ngClass]="hart?' fas ' :'far' " class=" fa-heart mx-2 cursor-pointer"></i>
+                </button>
+                <a class="" [routerLink]="['/productsdetails',product._id]">
+
+                    <div class="text-center">
+                        <img [src]="product?.mainImage?.secure_url" onerror="this.src='assets/error.svg';" class="w-75 "
+                            height="150" alt="">
+                    </div>
+
+
+                    <span class="ps-3 text-main fw-bold font-sm">{{product?.name}} </span>
+                    <!-- <span class="ps-3 text-main fw-bold font-sm">{{product?.description}} </span> -->
+
+                    <div class="">
+                        <div class="ps-3">
+                            <i class="fa-solid fa-star rating-color"></i>
+                            <i class="fa-solid fa-star rating-color"></i>
+                            <i class="fa-solid fa-star rating-color"></i>
+
+                        </div>
+
+                        <div class="row text-center gx-0 d-flex justify-content-center align-items-center ">
+                            <div class="col-md-4"> <span class="font-sm fw-bold">{{product.finalPrice}}EGP</span></div>
+                            <div class="col-md-3  text-secondary "> <del
+                                    class="font-sm  fw-bold">{{product.price}}</del></div>
+                            <div class="col-md-4  m-0 p-0   rounded">
+                                <div class="font-sm fw-bold alert alert-danger m-0  p-0 ">-:{{product.discound}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <button class="btn bg-main text-white w-100 my-2" (click)="getCart(product._id)">+ Add</button>
+            </div>
+        </div>
+
+    </div>
+</div>

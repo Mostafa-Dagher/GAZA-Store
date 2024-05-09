@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row align-items-center py-4 ">
+
+        <div class="col-md-4">
+
+            <owl-carousel-o [options]="customOptions">
+
+                <ng-container *ngFor="let img of responsData?.subImages">
+                    <ng-template carouselSlide>
+                        <img [src]="img.secure_url" class="w-100" onerror="this.src='assets/error.svg';" alt="">
+                    </ng-template>
+                </ng-container>
+
+            </owl-carousel-o>
+
+        </div>
+
+
+        <div class="col-md-3">
+            <div>
+                <img [src]="responsData?.mainImage?.secure_url" onerror="this.src='assets/error.svg';" class="w-100"
+                    alt="">
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <h2 class=" fw-bold mb-2">{{responsData?.name.split(' ').slice(0,30).join(' ')}}</h2>
+            <span class="ps-3 text-main fw-bold font-sm">{{responsData?.description}} </span>
+
+            <div class=" d-flex align-items-center ">
+                <h4 class="">Colors :</h4>
+                <div class="  mx-1" *ngFor="let color of responsData?.colors">
+                    <i class="fa-solid fa-circle font-sm" [style.color]="color"></i>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="">
+
+                    <del class="h6 fw-bold text-black-50">Price: {{responsData?.price}} EGP</del>
+
+                    <h4 class="text-danger fw-bold">Discount: -{{responsData?.discound }}%</h4>
+
+                    <h5 class="  fw-bold">FinalPrice : {{responsData?.finalPrice}} EGP</h5>
+                </div>
+
+                <div class="">
+                    <i class="fa-solid fa-star rating-color"></i>
+                    <i class="fa-solid fa-star rating-color"></i>
+                    <i class="fa-solid fa-star rating-color"></i>
+                    <i class="fa-solid fa-star rating-color"></i>
+
+                </div>
+            </div>
+
+            <button class="btn bg-main text-white w-100 my-2" (click)="getCart(responsData._id)">+ Add</button>
+        </div>
+
+    </div>
+</div>

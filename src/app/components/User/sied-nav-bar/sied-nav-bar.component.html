@@ -1,0 +1,49 @@
+<div class="sidenav position-relative position-fixed" [ngClass]="{ 'active': isActive }">
+    <h2 class="text-center">MUNE</h2>
+    <button class="btn text-white bg-main toggle-btn position-absolute end-100" (click)="toggleSidebar()"><i
+            class="fa-solid fa-bars"></i></button>
+    <hr>
+    <ul class="nav flex-column">
+
+        <li>
+            <div class="mt-2">
+                <h4 class="h4 fw-bold ps-2 cursor-pointer " (click)="DrowpBrand()">Brands</h4>
+                <hr>
+                <div class="" *ngIf="!isDrowpBrand">
+                    <div class="">
+                        <div class="" *ngFor="let brand of brands">
+                            <a class="text-dark h5 cursor-pointer ps-3" [routerLink]="['/ProductBYBrandID',brand._id]" >{{brand?.name}}</a>
+                        </div>
+                    </div>
+                    <span><a routerLink="/brand" class=" text-dark ps-3">See More ...</a></span>
+                </div>
+            </div>
+        </li>
+        <!-- cat -->
+        <li>
+            <div class="mt-2">
+                <h4 class="h4 fw-bold ps-2 cursor-pointer " (click)="DrowpCatecory()">Categores</h4>
+                <hr>
+                <div class="" *ngIf="!iscategoryDrwop">
+                    <div class="" *ngFor="let Cat of category">
+                        <h5 class="text-dark h5 cursor-pointer ps-3" (click)="sendData(Cat._id)">{{Cat?.name}}</h5>
+                    </div>
+                    <span><a routerLink="/categories" class=" text-dark ps-3">See More ...</a></span>
+                </div>
+            </div>
+        </li>
+        <!-- subcat -->
+        <li>
+            <div class="mt-2">
+                <h4 class="h4 fw-bold ps-2 cursor-pointer " (click)="DrowpSupCatecory()">subcategory</h4>
+                <hr>
+                <div class="" *ngIf="!isSubDrwop">
+                    <div class="" *ngFor="let SubCat of subCategory">
+                        <a class="nav-link text-dark" [routerLink]="['/ProductBYSupcateigoryID',SubCat._id]">{{SubCat?.name}}</a>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+    </ul>
+</div>
